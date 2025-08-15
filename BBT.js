@@ -1,7 +1,7 @@
 // 创建回到顶部圆形按钮
 const backToTopBtn = document.createElement('button');
 backToTopBtn.id = 'backToTop';
-backToTopBtn.innerHTML = '⬆'; // 可以换成你喜欢的箭头符号或图标
+backToTopBtn.innerHTML = '⬆'; // 箭头符号，可换成喜欢的图标
 backToTopBtn.style.cssText = `
   display: none;
   position: fixed;
@@ -22,7 +22,7 @@ backToTopBtn.style.cssText = `
 `;
 document.body.appendChild(backToTopBtn);
 
-// 鼠标悬停缩放效果
+// 鼠标悬停放大效果
 backToTopBtn.addEventListener('mouseenter', () => {
   backToTopBtn.style.transform = 'scale(1.2)';
 });
@@ -30,7 +30,7 @@ backToTopBtn.addEventListener('mouseleave', () => {
   backToTopBtn.style.transform = 'scale(1)';
 });
 
-// 滚动事件：超过 500px 显示按钮，反之隐藏
+// 滚动事件：超过 500px 显示按钮，否则隐藏
 window.addEventListener('scroll', () => {
   const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
   if (scrollTop >= 500) {
