@@ -7,7 +7,6 @@ backToTopBtn.innerHTML = `
 </svg>
 `;
 backToTopBtn.style.cssText = `
-  display: none;
   position: fixed;
   bottom: 20px;
   right: 20px;
@@ -19,29 +18,33 @@ backToTopBtn.style.cssText = `
   border-radius: 50%;
   background-color: rgba(0, 0, 0, 0.6);
   opacity: 0;
-  transition: opacity 0.5s, transform 0.3s;
+  visibility: hidden;
+  transform: scale(0.8);
+  transition: opacity 0.4s ease, transform 0.4s ease;
   z-index: 1000;
   box-shadow: 0 3px 6px rgba(0,0,0,0.3);
 `;
 document.body.appendChild(backToTopBtn);
 
-// 鼠标悬停放大效果
+// 鼠标悬停平滑放大
 backToTopBtn.addEventListener('mouseenter', () => {
-  backToTopBtn.style.transform = 'scale(1.3)';
+  backToTopBtn.style.transform = 'scale(1.2)';
 });
 backToTopBtn.addEventListener('mouseleave', () => {
   backToTopBtn.style.transform = 'scale(1)';
 });
 
-// 滚动事件：超过 500px 显示按钮，否则隐藏
+// 滚动事件：超过 100px 显示按钮（可调）
 window.addEventListener('scroll', () => {
   const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-  if (scrollTop >= 500) {
-    backToTopBtn.style.display = 'block';
-    setTimeout(() => backToTopBtn.style.opacity = '1', 10);
+  if (scrollTop >= 100) {
+    backToTopBtn.style.visibility = 'visible';
+    backToTopBtn.style.opacity = '1';
+    backToTopBtn.style.transform = 'scale(1)';
   } else {
     backToTopBtn.style.opacity = '0';
-    setTimeout(() => backToTopBtn.style.display = 'none', 500);
+    backToTopBtn.style.transform = 'scale(0.8)';
+    setTimeout(() => backToTopBtn.style.visibility = 'hidden', 400);
   }
 });
 
