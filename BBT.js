@@ -26,24 +26,28 @@ backToTopBtn.style.cssText = `
 `;
 document.body.appendChild(backToTopBtn);
 
-// 鼠标悬停平滑放大
+let isHovered = false; // 标记悬浮状态
+
+// 鼠标悬浮放大
 backToTopBtn.addEventListener('mouseenter', () => {
+  isHovered = true;
   backToTopBtn.style.transform = 'scale(1.2)';
 });
 backToTopBtn.addEventListener('mouseleave', () => {
+  isHovered = false;
   backToTopBtn.style.transform = 'scale(1)';
 });
 
-// 滚动事件：超过 100px 显示按钮（可调）
+// 滚动显示按钮
 window.addEventListener('scroll', () => {
   const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-  if (scrollTop >= 100) {
+  if (scrollTop >= 100) { // 可根据页面长度调整阈值
     backToTopBtn.style.visibility = 'visible';
     backToTopBtn.style.opacity = '1';
-    backToTopBtn.style.transform = 'scale(1)';
+    if (!isHovered) backToTopBtn.style.transform = 'scale(1)';
   } else {
     backToTopBtn.style.opacity = '0';
-    backToTopBtn.style.transform = 'scale(0.8)';
+    if (!isHovered) backToTopBtn.style.transform = 'scale(0.8)';
     setTimeout(() => backToTopBtn.style.visibility = 'hidden', 400);
   }
 });
