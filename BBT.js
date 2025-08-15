@@ -26,7 +26,7 @@ backToTopBtn.style.cssText = `
 `;
 document.body.appendChild(backToTopBtn);
 
-let isHovered = false; // 标记悬浮状态
+let isHovered = false;
 
 // 鼠标悬浮放大
 backToTopBtn.addEventListener('mouseenter', () => {
@@ -41,7 +41,7 @@ backToTopBtn.addEventListener('mouseleave', () => {
 // 滚动显示按钮
 window.addEventListener('scroll', () => {
   const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-  if (scrollTop >= 100) { // 可根据页面长度调整阈值
+  if (scrollTop >= 100) {
     backToTopBtn.style.visibility = 'visible';
     backToTopBtn.style.opacity = '1';
     if (!isHovered) backToTopBtn.style.transform = 'scale(1)';
