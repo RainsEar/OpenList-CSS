@@ -1,30 +1,33 @@
-// 创建回到顶部圆形按钮
+// 创建回到顶部圆形 SVG 按钮
 const backToTopBtn = document.createElement('button');
 backToTopBtn.id = 'backToTop';
-backToTopBtn.innerHTML = '⬆'; // 箭头符号，可换成喜欢的图标
+backToTopBtn.innerHTML = `
+<svg viewBox="0 0 24 24" width="24" height="24" fill="white">
+  <path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.59 5.58L20 12l-8-8-8 8z"/>
+</svg>
+`;
 backToTopBtn.style.cssText = `
   display: none;
   position: fixed;
-  bottom: 40px;
-  right: 40px;
-  width: 50px;
-  height: 50px;
-  font-size: 24px;
+  bottom: 20px;
+  right: 20px;
+  width: 35px;
+  height: 35px;
+  padding: 5px;
   cursor: pointer;
   border: none;
   border-radius: 50%;
   background-color: rgba(0, 0, 0, 0.6);
-  color: #fff;
   opacity: 0;
   transition: opacity 0.5s, transform 0.3s;
   z-index: 1000;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.3);
 `;
 document.body.appendChild(backToTopBtn);
 
 // 鼠标悬停放大效果
 backToTopBtn.addEventListener('mouseenter', () => {
-  backToTopBtn.style.transform = 'scale(1.2)';
+  backToTopBtn.style.transform = 'scale(1.3)';
 });
 backToTopBtn.addEventListener('mouseleave', () => {
   backToTopBtn.style.transform = 'scale(1)';
