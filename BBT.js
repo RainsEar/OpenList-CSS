@@ -1,4 +1,3 @@
-// 创建回到顶部圆形 SVG 按钮
 const backToTopBtn = document.createElement('button');
 backToTopBtn.id = 'backToTop';
 backToTopBtn.innerHTML = `
@@ -23,6 +22,7 @@ backToTopBtn.style.cssText = `
   transition: opacity 0.4s ease, transform 0.4s ease;
   z-index: 1000;
   box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+  outline: none; /* 禁用点击 focus 的轮廓 */
 `;
 document.body.appendChild(backToTopBtn);
 
@@ -44,7 +44,7 @@ window.addEventListener('scroll', () => {
   if (scrollTop >= 100) {
     backToTopBtn.style.visibility = 'visible';
     backToTopBtn.style.opacity = '1';
-    if (!isHovered) backToTopBtn.style.transform = 'scale(1)';
+    if (!isHovered) backToTopBtn.style.transform = 'scale(1)'; // 强制恢复默认大小
   } else {
     backToTopBtn.style.opacity = '0';
     if (!isHovered) backToTopBtn.style.transform = 'scale(0.8)';
@@ -52,7 +52,9 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// 点击按钮平滑回到顶部
-backToTopBtn.addEventListener('click', () => {
+// 点击按钮平滑回到顶部，不改变大小
+backToTopBtn.addEventListener('click', (e) => {
+  e.preventDefault();
   window.scrollTo({ top: 0, behavior: 'smooth' });
+  backToTopBtn.blur(); // 移除点击 focus 状态，防止 scale 被保留
 });
